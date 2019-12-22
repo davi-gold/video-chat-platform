@@ -1,19 +1,15 @@
 lambda-example:
-    handler: src.functions
+    handler: src.functions.lambda_example.handler
     memorySize: 256
     timeout: 30
     environment:
       DB_NAME: !Ref DBstylistCustomers
     events:
       - http:
-          path: lambda/{stylistId}
-          method: post
+          path: lambda
+          method: get
           cors: true
     iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - lambda:InvokeFunction
-          - lambda:InvokeAsync
       - Effect: Allow
         Action:
           - dynamodb:Query
