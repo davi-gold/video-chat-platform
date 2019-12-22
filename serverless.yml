@@ -9,7 +9,8 @@ provider:
 plugins:
 
 custom:
-  lambdaName:
+  lambdaName: test
+  dbName: db-test
 
 package:
   exclude:
