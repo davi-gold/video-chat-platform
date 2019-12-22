@@ -9,7 +9,8 @@ provider:
 plugins:
 
 custom:
-  lambdaName:
+  lambdaName: test
+  dbName: db-test
 
 package:
   exclude:
@@ -25,7 +26,7 @@ package:
     usePipenv: true
 
 functions:
-  - ${file(sls-functions/lambda-for-example.yml)}
+  - ${file(sls-functions/lambda-example.yml)}
 
 resources:
-  - ${file(sls-resources/db-for-example.yml)}
+  - ${file(sls-resources/db-example.yml)}
