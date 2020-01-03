@@ -1,0 +1,32 @@
+service: video-chat-platform
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: python3.7
+  region: us-east-1
+
+plugins:
+
+custom:
+  lambdaName: test
+  dbName: db-test
+
+package:
+  exclude:
+    - '*'
+    - '!src/**'
+    - '**/*.pyc'
+    - 'node_modules/**'
+    - '.venv/**'
+
+  pythonRequirements:
+    noDeploy:
+      - boto3
+    usePipenv: true
+
+functions:
+  - ${file(sls-functions/lambda-example.yml)}
+
+resources:
+  - ${file(sls-resources/db-example.yml)}

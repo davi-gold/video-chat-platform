@@ -1,0 +1,14 @@
+Resources:
+  DBstylistCustomers:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.dbName}
+      AttributeDefinitions:
+        - AttributeName: stylist
+          AttributeType: S
+      KeySchema:
+        - AttributeName: stylist
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
