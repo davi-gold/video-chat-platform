@@ -1,0 +1,33 @@
+CognitoUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: ${self:custom.UserPoolName}
+      UsernameAttributes:
+        - email
+      Schema:
+        - Name: id
+          Required: false
+          Mutable: true
+          AttributeDataType: String
+          StringAttributeConstraints:
+            MaxLength: 128
+            MinLength: 0
+      Policies:
+        PasswordPolicy:
+            MinimumLength: 8
+            RequireLowercase: true
+            RequireNumbers: true
+            RequireSymbols: false
+            RequireUppercase: false
+            TemporaryPasswordValidityDays: 30
+
+
+  CognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: ${self:custom.clientName}
+      UserPoolId:
+        Ref: CognitoUserPool
+      ExplicitAuthFlows:
+        - ALLOW_ADMIN_USER_PASSWORD_AUTH
+      GenerateSecret: false
