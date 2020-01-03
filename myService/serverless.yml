@@ -1,4 +1,4 @@
-service: videoChat
+service: myService
 
 provider:
   name: aws
